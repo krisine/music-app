@@ -12,10 +12,10 @@ export default function MiniPlayer() {
       <div className="flex items-center gap-3">
         <img src={currentSong.cover} alt={currentSong.title} className="w-10 h-10 rounded-lg object-cover" />
         <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium truncate">{currentSong.title}</p>
+          <p className="text-sm font-bold truncate text-white">{currentSong.title}</p>
           <p className="text-xs text-gray-400 truncate">{currentSong.artist}</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-white">
           <button className="p-2 hover:text-purple-500">
             <SkipBack size={20} />
           </button>
