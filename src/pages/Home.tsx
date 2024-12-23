@@ -2,11 +2,30 @@ import React from 'react';
 import { Bell, Search } from 'lucide-react';
 import Layout from '../components/Layout';
 import MusicCard from '../components/MusicCard';
-import { songs } from '../data/songs';
+// import { songs } from '../data/songs';
+import { useSongs } from '../context/SongContext';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const navigate = useNavigate();
+  const { songs, loading, error } = useSongs();  // 使用 useSongs Hook 获取数据
+
+  // 获取今天的日期
+  const today = new Date();
+
+  // 获取年份
+  const year = today.getFullYear();
+
+  // 获取月份（注意：JavaScript 中月份是从 0 开始的，所以需要加 1）
+  const month = String(today.getMonth() + 1).padStart(2, '0'); 
+
+  // 获取日期
+  const day = String(today.getDate()).padStart(2, '0');
+
+  // 拼接成字符串格式
+  const formattedDate = `${year}-${month}-${day}`;
+
+  console.log(formattedDate);  // 输出：2024-12-12
 
   return (
     <Layout>
@@ -34,7 +53,7 @@ export default function Home() {
             onClick={() => navigate('/daily')}
           >
             <h3 className="font-semibold mb-2">Daily recommed</h3>
-            <p className="text-sm text-gray-400">2024-12-5</p>
+            <p className="text-sm text-gray-400">{formattedDate}</p>
           </div>
           <div 
             className="bg-gray-800 p-4 rounded-xl cursor-pointer hover:bg-gray-700 transition-colors"

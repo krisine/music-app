@@ -1,21 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { Radio } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import supabase from '../utils/client.ts';
 
 export default function Welcome() {
   const navigate = useNavigate();
 
-  const [countries, setCountries] = useState([]);
-
-  useEffect(() => {
-    getCountries();
-  }, []);
-
-  async function getCountries() {
-    const { data } = await supabase.from('countries').select();
-    setCountries(data);
-  }
 
   return (
     <div className="h-screen bg-gray-900 flex flex-col items-center justify-center p-8 text-white">
@@ -29,11 +17,7 @@ export default function Welcome() {
         Enter →
       </button>
 
-      <ul>
-        {countries.map((country: { name: string }) => (
-          <li key={country.name}>{country.name}</li>
-        ))}
-      </ul>
+
     </div>
   );
 }
