@@ -1,17 +1,13 @@
 import React, { createContext, useState, useEffect, useContext, ReactNode } from 'react';
 import { getSongs } from '../utils/getSongs'; // 导入你提供的获取歌曲的函数
-
-// 定义歌曲数据类型
-interface Song {
-  artist: string;
-  [key: string]: any; // 其他可能的字段
-}
+import { Song } from '../types';
 
 // 定义 Context 的数据结构
 interface SongsContextType {
   songs: Song[];
   loading: boolean;
   error: string | null;
+  updateSongs: (newSong: Song) => void; // 添加更新歌曲列表的回调
 }
 
 // 创建 SongsContext，指定默认值为空
@@ -24,11 +20,10 @@ interface SongsProviderProps {
 
 // 创建 SongsProvider
 export const SongProvider: React.FC<SongsProviderProps> = ({ children }) => {
-  const [songs, setSongs] = useState<Song[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+    const [songs, setSongs] = useState<Song[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
     const fetchSongs = async () => {
       try {
         const data = await getSongs(); // 获取歌曲数据
@@ -41,14 +36,22 @@ export const SongProvider: React.FC<SongsProviderProps> = ({ children }) => {
       }
     };
 
-    fetchSongs(); // 调用获取歌曲的函数
-  }, []); // 依赖空数组，确保只在组件首次加载时调用
+    useEffect(() => {
+      fetchSongs(); // 调用获取歌曲的函数
+    }, []); // 依赖空数组，确保只在组件首次加载时调用
 
-  return (
-    <SongsContext.Provider value={{ songs, loading, error }}>
+    // 更新歌曲列表的函数
+    const updateSongs = (newSong: Song) => {
+      setSongs((prevSongs) => [...prevSongs, newSong]); // 将新上传的歌曲添加到歌曲列表中
+      console.log('New songs:', songs); // 输出最新的歌曲列表
+    };
+
+
+    return (
+      <SongsContext.Provider value={{ songs, loading, error, updateSongs }}>
       {children}
-    </SongsContext.Provider>
-  );
+      </SongsContext.Provider>
+    );
 };
 
 // 自定义 Hook 用于在组件中使用 Context

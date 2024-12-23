@@ -83,7 +83,7 @@ export default function Login() {
               </div>
               <div className="flex items-center justify-between mb-6">
                 <label className="flex items-center text-sm text-gray-400">
-                  <input type="checkbox" className="mr-2" />
+                  <input type="checkbox" className="mr-2" checked />
                   Remember me
                 </label>
                 <button type="button" className="text-sm text-purple-500">

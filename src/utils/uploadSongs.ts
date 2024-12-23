@@ -1,12 +1,16 @@
 import supabase from './client';
+import { Song } from '../types';
+
 
 export const uploadSong = async (
   file: File,
   title: string,
   artist: string,
   coverUrl: string,
-  userId: string
-) => {
+  userId: string,
+): Promise<Song | null> => {
+
+
   try {
     // Upload audio file to storage
     const audioFileName = `${Date.now()}-${file.name}`;
@@ -37,6 +41,14 @@ export const uploadSong = async (
       .single();
 
     if (error) throw error;
+    console.log("uploaded data", data)
+
+    // 上传成功后，调用回调函数更新歌曲列表
+    if (data) {
+      alert("Upload Success!")
+      window.location.href = '/home';
+    }
+
     return data;
   } catch (error) {
     console.error('Error uploading song:', error);
