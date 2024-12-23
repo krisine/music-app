@@ -58,7 +58,7 @@ export default function Home() {
 
         <h2 className="text-xl font-bold mb-4">Top 10 songs</h2>
         <div className="space-y-4">
-          {songs.map((song, index) => (
+          {songs.sort((a, b) => b.likes - a.likes).map((song, index) => (
             <MusicCard key={song.id} song={song} rank={index + 1} />
           ))}
         </div>

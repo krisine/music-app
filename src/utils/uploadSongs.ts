@@ -34,7 +34,9 @@ export const uploadSong = async (
           artist,
           cover: coverUrl,
           audioUrl,
-          user_id: userId
+          user_id: userId,
+          likes:1,
+          isLiked: false,
         }
       ])
       .select()
