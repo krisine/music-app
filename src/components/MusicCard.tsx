@@ -127,7 +127,11 @@ export default function MusicCard({ song, rank }: MusicCardProps) {
         <Link to={`/song/${id}`} className="text-white hover:text-purple-500">
           <h3 className="font-semibold">{title}</h3>
         </Link>
+        <Link 
+                to={`/artist/${artist}`} 
+          >
         <p className="text-sm text-gray-400">{artist}</p>
+        </Link>
       </div>
       <div className="flex items-center gap-2" onClick={handleLikeClick}>
         <Heart

@@ -1,5 +1,6 @@
 import React from 'react';
 import { SkipBack, Play, Pause, SkipForward, Music2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useAudio } from '../context/AudioContext';
 
 export default function MiniPlayer() {
@@ -13,7 +14,12 @@ export default function MiniPlayer() {
         <img src={currentSong.cover} alt={currentSong.title} className="w-10 h-10 rounded-lg object-cover" />
         <div className="flex-1 min-w-0">
           <p className="text-sm font-bold truncate text-white">{currentSong.title}</p>
+          
+          <Link 
+                to={`/artist/${currentSong.artist}`} 
+          >
           <p className="text-xs text-gray-400 truncate">{currentSong.artist}</p>
+          </Link>
         </div>
         <div className="flex items-center gap-2 text-white">
           <button className="p-2 hover:text-purple-500">

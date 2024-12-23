@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Trash2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { songs } from '../data/songs';
 import MusicCard from '../components/MusicCard';
 
@@ -91,7 +91,13 @@ export default function Search() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <p className="text-sm">{artist}</p>
+                    <Link 
+                        to={`/artist/${artist}`} 
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                      {artist}
+                    </Link>
+                    {/* <p className="text-sm">{artist}</p> */}
                   </div>
                 ))}
               </div>

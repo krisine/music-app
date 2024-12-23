@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronDown, Share2, Heart } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { songs } from '../data/songs';
 import { useAudio } from '../context/AudioContext';
 
@@ -53,7 +53,12 @@ export default function SongDetail() {
         <div className="text-center mb-12">
           <h2 className="text-2xl font-bold mb-2 text-white">{song.title}</h2>
           <div className="flex items-center justify-center gap-2">
-            <span className="text-gray-400">{song.artist}</span>
+            <Link 
+                to={`/artist/${song.artist}`} 
+                className="text-gray-400 hover:text-white transition-colors"
+              >
+              {song.artist}
+            </Link>
             <button className="bg-gray-700 px-3 py-1 rounded-full text-sm text-white">
               Follow+
             </button>

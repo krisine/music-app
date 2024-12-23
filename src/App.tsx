@@ -13,6 +13,7 @@ import Likes from './pages/Likes';
 import Upload from './pages/Upload';
 import Profile from './pages/Profile';
 import SongDetail from './pages/SongDetail';
+import ArtistDetail from './pages/ArtistDetail';
 import MiniPlayer from './components/MiniPlayer';
 
 export default function App() {
@@ -33,6 +34,7 @@ export default function App() {
               <Route path="/upload" element={<Upload />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/song/:id" element={<SongDetail />} />
+              <Route path="/artist/:artist" element={<ArtistDetail />} />
             </Routes>
             <MiniPlayer />
           </AudioProvider>
